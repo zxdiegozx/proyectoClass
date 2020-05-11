@@ -1,0 +1,134 @@
+[1mdiff --git a/Clasesprueba.cpp b/Clasesprueba.cpp[m
+[1mindex c7450fd..234b180 100644[m
+[1m--- a/Clasesprueba.cpp[m
+[1m+++ b/Clasesprueba.cpp[m
+[36m@@ -1,5 +1,4 @@[m
+ #include <iostream>[m
+[31m-#include <ctime>[m
+ [m
+ using std::cout; // el programa usa cout[m
+ using std::cin; // el programa usa cin[m
+[36m@@ -7,28 +6,29 @@[m [musing std::endl; // el programa usa endl[m
+ class CalculoNumeros[m
+ {[m
+ public:[m
+[31m-[m
+     void procesoDisplay(int valor)[m
+[31m-    {unsigned t0, t1;[m
+[31m-    t0=clock();[m
+[32m+[m[32m    {[m
+     num=valor;[m
+     if(valor<0)[m
+     {   negativo=valor;[m
+         valor=-(valor);[m
+     }[m
+ [m
+[32m+[m[32m     //Calcular cantidad digitos[m
+     if(num<0){num=-(num);}[m
+     while(num/10>0)[m
+     {[m
+         num=num/10;[m
+         contador++;[m
+     }[m
+[31m-           numDes[0]= valor%10;[m
+[31m-           for(int x=1; x<7; x++)[m
+[31m-        {[m
+[31m-            pos*=10;[m
+[31m-            numDes[x]=(valor/pos)%10;[m
+[31m-        }[m
+[32m+[m
+[32m+[m[32m    //Descopone la lectura[m
+[32m+[m[32m    numDes[0]= valor%10;[m
+[32m+[m[32m    for(int x=1; x<7; x++)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        pos*=10;[m
+[32m+[m[32m        numDes[x]=(valor/pos)%10;[m
+[32m+[m[32m    }[m
+ [m
+     if(negativo>0)[m
+      { cout << "El numero a descomponer es: " << valor <<endl;[m
+[36m@@ -37,73 +37,13 @@[m [mpublic:[m
+      cout << "El numero tiene estos digitos: " << contador << endl;[m
+       cout << endl;[m
+ [m
+[31m-    switch(contador)[m
+[31m-    {[m
+[31m-        case 1:[m
+[31m-                    if(negativo<0){cout << "-";}[m
+[31m-                    cout << "  " << numDes[0];[m
+[31m-                    cout << endl;[m
+[31m-                     break;[m
+[31m-        case 2:[m
+[31m-                    if(negativo<0){cout << "-";}[m
+[31m-                    cout << "  " << numDes[1];[m
+[31m-                    cout << "  " << numDes[0];[m
+[31m-                    cout << endl;[m
+[31m-                     break;[m
+[31m-[m
+[31m-        case 3:[m
+[31m-                    if(negativo<0){cout << "-";}[m
+[31m-                   cout << "  " << numDes[2];[m
+[31m-                   cout << "  " << numDes[1];[m
+[31m-                   cout << "  " << numDes[0];[m
+[31m-                    cout << endl;[m
+[31m-                     break;[m
+[31m-[m
+[31m-        case 4:[m
+[31m-                    if(negativo<0){cout << "-";}[m
+[31m-                   cout << "  " << numDes[3];[m
+[31m-                   cout << "  " << numDes[2];[m
+[31m-                   cout << "  " << numDes[1];[m
+[31m-                   cout << "  " << numDes[0];[m
+[31m-                    cout << endl;[m
+[31m-                     break;[m
+[31m-[m
+[31m-        case 5:[m
+[31m-                    if(negativo<0){cout << "-";}[m
+[31m-                    cout << "  " << numDes[4];[m
+[31m-                    cout << "  " << numDes[3];[m
+[31m-                    cout << "  " << numDes[2];[m
+[31m-                    cout << "  " << numDes[1];[m
+[31m-                    cout << "  " << numDes[0];[m
+[31m-                    cout << endl;[m
+[31m-                     break;[m
+[31m-[m
+[31m-        case 6:[m
+[31m-                    if(negativo<0){cout << "-";}[m
+[31m-                   cout << "  " << numDes[5];[m
+[31m-                   cout << "  " << numDes[4];[m
+[31m-                   cout << "  " << numDes[3];[m
+[31m-                   cout << "  " << numDes[2];[m
+[31m-                   cout << "  " << numDes[1];[m
+[31m-                   cout << "  " << numDes[0];[m
+[31m-                    cout << endl;[m
+[31m-                     break;[m
+[31m-[m
+[31m-        case 7:[m
+[31m-                    if(negativo<0){cout << "-";}[m
+[31m-                    for(xi=6;xi==0;xi--)[m
+[31m-                    {[m
+[31m-                        cout << "  " << numDes[xi];[m
+[31m-                        cout << endl;[m
+[31m-                    }break;[m
+[31m-        default:[m
+[31m-            break;[m
+[31m-[m
+[31m-    }          t1 = clock();[m
+[31m-long double time = (double(t1-t0)/CLOCKS_PER_SEC);[m
+[31m-cout << "Execution Time code: " << time << endl;[m
+[32m+[m[32m      //visualiza numero descompuesto[m
+[32m+[m[32m      if(negativo<0){cout << "-"<<endl;}[m
+[32m+[m[32m        for(int xi=0; xi<contador; xi++)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            cout<<xi<<": "<<numDes[xi]<<endl;[m
+[32m+[m[32m        }[m
+     }[m
+[31m-[m
+     private:[m
+     int num=1,contador=1, pos=1, xi;[m
+     int numDes[7];[m
+[36m@@ -119,3 +59,4 @@[m [mint main()[m
+     miCalculoNumeros.procesoDisplay(Numero);[m
+     return 0;[m
+ }[m
+[41m+[m
