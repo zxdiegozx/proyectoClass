@@ -6,49 +6,68 @@ using std::endl; // el programa usa endl
 class CalculoNumeros
 {
 public:
-    void procesoDisplay(int valor)
+
+    //establece valor
+    void establecerDatos(int valor)
+        {
+            datos=valor;
+            digitos=valor;
+        }
+
+    //obtiene datos
+    int obtenerDatos()
+        {
+            return datos;
+        }
+
+    //Calcula cantidad de digitos
+     int calculoDigitos()
+        {
+
+            if(datos<0)
+            {
+                datos=-(datos);
+            }
+            while(datos/10>0)
+            {
+                datos=datos/10;
+                contador++;
+            }
+        }
+
+    //obtiene digitos
+    int obtenerDigitos()
     {
-    num=valor;
-    if(valor<0)
-    {   negativo=valor;
-        valor=-(valor);
+        calculoDigitos();
+        return contador;
     }
 
-     //Calcular cantidad digitos
-    if(num<0){num=-(num);}
-    while(num/10>0)
+    void mostrarResultado(int valor)
     {
-        num=num/10;
-        contador++;
-    }
+        cout << "El numero tiene estos digitos: " << obtenerDigitos()
+        << endl;
+        cout << endl;
 
-    //Descopone la lectura
-    numDes[0]= valor%10;
-    for(int x=1; x<7; x++)
-    {
-        pos*=10;
-        numDes[x]=(valor/pos)%10;
-    }
-
-    if(negativo>0)
-     { cout << "El numero a descomponer es: " << valor <<endl;
-     }else{ cout << "El numero a descomponer es: -" << valor <<endl;
-     }
-     cout << "El numero tiene estos digitos: " << contador << endl;
-      cout << endl;
+        //Descopone la lectura
+        numDes[0]= valor%10;
+        for(int x=1; x<7; x++)
+        {
+            pos*=10;
+            numDes[x]=(valor/pos)%10;
+        }
 
       //visualiza numero descompuesto
-      if(negativo<0){cout << "-"<<endl;}
+        if(valor<0){cout << "-"<<endl;}
         for(int xi=0; xi<contador; xi++)
         {
             cout<<xi<<": "<<numDes[xi]<<endl;
         }
+
     }
     private:
     int num=1,contador=1, pos=1, xi;
     int numDes[7];
-    int negativo;
-};
+    int datos, digitos;};
 
 int main()
 {
@@ -56,7 +75,8 @@ int main()
     CalculoNumeros miCalculoNumeros;
     cout << "Escriba valor: ";
     cin >>Numero;
-    miCalculoNumeros.procesoDisplay(Numero);
+    miCalculoNumeros.establecerDatos(Numero);
+    miCalculoNumeros.mostrarResultado(Numero);
     return 0;
 }
 
